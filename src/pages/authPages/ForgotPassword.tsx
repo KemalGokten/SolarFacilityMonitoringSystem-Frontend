@@ -1,5 +1,4 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -25,10 +24,9 @@ const schema = z.object({
 type ForgotPasswordForm = z.infer<typeof schema>;
 
 // Default theme
-const defaultTheme = createTheme();
 
 export default function ForgotPassword() {
-  const [forgotPasswordMutation, { data, loading, error }] =
+  const [forgotPasswordMutation, { loading, error }] =
     useForgotPasswordMutation();
   const { enqueueSnackbar } = useSnackbar();
 

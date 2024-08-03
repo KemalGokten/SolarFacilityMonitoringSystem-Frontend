@@ -32,7 +32,7 @@ type LoginForm = z.infer<typeof schema>;
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const [loginUserMutation, { data, loading, error }] = useLoginUserMutation();
+  const [loginUserMutation, { loading, error }] = useLoginUserMutation();
   const { loginUser } = useAuth();
   const navigate = useNavigate();
 

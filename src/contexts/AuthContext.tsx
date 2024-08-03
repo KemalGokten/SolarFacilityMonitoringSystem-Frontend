@@ -34,7 +34,7 @@ export function AuthProviderWrapper(props: any) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
 
-  const [verifyToken, { data, loading, error }] = useVerifyTokenLazyQuery();
+  const [verifyToken] = useVerifyTokenLazyQuery();
 
   const storeToken = (token: string) => {
     localStorage.setItem("authToken", token);

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   useGetFacilityLazyQuery,
   useGetFacilitiesLazyQuery,
@@ -46,7 +46,6 @@ const uploadFile = async (file: File, facilityId: string) => {
 export default function Monitoring() {
   const { user } = useAuth();
   const { facilityId: urlFacilityId } = useParams<{ facilityId?: string }>();
-  const navigate = useNavigate();
 
   const [
     getFacility,

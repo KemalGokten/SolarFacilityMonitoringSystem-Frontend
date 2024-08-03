@@ -28,9 +28,6 @@ import {
 import { useAuth } from "../contexts/AuthContext";
 import {
   GetFacilitiesQuery,
-  CreateFacilityMutation,
-  UpdateFacilityMutation,
-  DeleteFacilityMutation,
 } from "../graphql/generated";
 
 // Styled components

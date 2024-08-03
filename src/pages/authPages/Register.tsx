@@ -16,7 +16,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useLoginUserMutation } from "../../graphql/generated";
 import { useNavigate } from "react-router-dom";
 
 // Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character
@@ -40,7 +39,7 @@ type SignupForm = z.infer<typeof schema>;
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [registerUserMutation, { data, loading, error }] =
+  const [registerUserMutation, {loading, error }] =
     useRegisterUserMutation();
   const navigate = useNavigate();
 
