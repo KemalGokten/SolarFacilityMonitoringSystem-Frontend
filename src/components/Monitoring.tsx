@@ -29,7 +29,7 @@ const uploadFile = async (file: File, facilityId: string) => {
   formData.append("facilityId", facilityId);
 
   const response = await fetch(
-    `${process.env.REACT_APP_EXPRESS_URI}/uploads/readCSVFile`,
+    `${process.env.REACT_APP_API_URL}/uploads/readCSVFile`,
     {
       method: "POST",
       body: formData,
@@ -71,7 +71,9 @@ export default function Monitoring() {
       if (urlFacilityId) {
         idToFetch = urlFacilityId;
       } else {
-        const lastVisitedFacilityId = localStorage.getItem("lastVisitedFacilityId");
+        const lastVisitedFacilityId = localStorage.getItem(
+          "lastVisitedFacilityId"
+        );
 
         if (lastVisitedFacilityId) {
           idToFetch = lastVisitedFacilityId;
@@ -101,7 +103,9 @@ export default function Monitoring() {
     }
   }, [facilityData]);
 
-  const uploadFileHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const uploadFileHandler = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const files = event.target.files;
 
     if (!files || files.length === 0) {
