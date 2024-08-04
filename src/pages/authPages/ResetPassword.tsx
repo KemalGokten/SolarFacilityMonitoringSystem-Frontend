@@ -26,7 +26,7 @@ import { useResetPasswordMutation } from "../../graphql/generated";
 const schema = z.object({
   newPassword: z.string().regex(passwordValidation, {
     message:
-      "Password must contain at least 6 character(s), one uppercase letter, one lowercase letter, one number and one special character",
+      "Password must contain at least 8 character(s), one uppercase letter, one lowercase letter, one number and one special character",
   }),
 });
 
