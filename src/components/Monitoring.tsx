@@ -14,7 +14,6 @@ import {
   useGetFacilitiesLazyQuery,
 } from "../graphql/generated";
 
-
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -142,9 +141,9 @@ export default function Monitoring() {
       <h1>Monitoring</h1>
       {facility ? (
         <div>
-          <h2>{facility.name}</h2>
-          <p>Nominal Power: {facility.nominalPower}</p>
-          {/* Additional facility details */}
+          <h3>Facility Name:{facility.name}</h3>
+          <h4>Nominal Power: {facility.nominalPower}</h4>
+          {/* Additional facility performance chart */}
           {facility.facilityPerformance ? (
             <div>
               <Chart data={facility.facilityPerformance} />
