@@ -67,7 +67,7 @@ const ResetPassword = () => {
         enqueueSnackbar("Password reset successful", {
           variant: "success",
         });
-        navigate("/login");
+        navigate("/auth/login");
       }
     } catch (e) {
       console.error("Password reset error", e);
