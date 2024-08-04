@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+import { useAuth } from "../contexts/AuthContext";
+
+import Button from "@mui/material/Button";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { styled } from "@mui/material/styles";
+
+import Chart from "./Chart"; // Import the Chart component
+
 import {
   useGetFacilityLazyQuery,
   useGetFacilitiesLazyQuery,
 } from "../graphql/generated";
-import { useAuth } from "../contexts/AuthContext";
-import Button from "@mui/material/Button";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { styled } from "@mui/material/styles";
-import Chart from "./Chart"; // Import the Chart component
+
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -119,8 +124,7 @@ export default function Monitoring() {
       if (!facilityData) {
         throw new Error("Facility Data is empty");
       }
-      const data = await uploadFile(file, facilityData.facility.id);
-      console.log("🚀 ~ uploadFile ~ data:", data);
+      await uploadFile(file, facilityData.facility.id);
       await getFacility({ variables: { id: facilityData.facility.id } });
     } catch (error) {
       console.error("Error uploading file:", error);

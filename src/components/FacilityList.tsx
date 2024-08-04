@@ -1,5 +1,8 @@
-import * as React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../contexts/AuthContext";
+
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -18,16 +21,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+
 import {
   useGetFacilitiesQuery,
   useCreateFacilityMutation,
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
-  GetFacilitiesDocument,
-} from "../graphql/generated";
-import { useAuth } from "../contexts/AuthContext";
-import {
   GetFacilitiesQuery,
+  GetFacilitiesDocument,
 } from "../graphql/generated";
 
 // Styled components
@@ -51,7 +52,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data, loading, error } = useGetFacilitiesQuery({
     variables: { userId: user?.id || "" },
@@ -113,39 +114,41 @@ export default function CustomizedTables() {
   const [deleteFacility] = useDeleteFacilityMutation({
     update(cache, { data }) {
       if (!data || !data.deleteFacility) return;
-  
+
       // Remove the deleted facility from the cache
       const deletedFacilityId = data.deleteFacility.id;
-  
+
       // Remove the facility from the list in cache
       const { facilities } = cache.readQuery<GetFacilitiesQuery>({
         query: GetFacilitiesDocument,
-        variables: { userId: user?.id || '' },
+        variables: { userId: user?.id || "" },
       }) || { facilities: { facilities: [] } };
-  
+
       cache.writeQuery({
         query: GetFacilitiesDocument,
-        variables: { userId: user?.id || '' },
+        variables: { userId: user?.id || "" },
         data: {
           facilities: {
             ...facilities,
-            facilities: facilities.facilities.filter(facility => facility.id !== deletedFacilityId),
+            facilities: facilities.facilities.filter(
+              (facility) => facility.id !== deletedFacilityId
+            ),
           },
         },
       });
-  
-      if (localStorage.getItem('lastVisitedFacilityId') === deletedFacilityId) {
-        localStorage.removeItem('lastVisitedFacilityId');
+
+      if (localStorage.getItem("lastVisitedFacilityId") === deletedFacilityId) {
+        localStorage.removeItem("lastVisitedFacilityId");
       }
     },
   });
 
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [editingFacilityId, setEditingFacilityId] = React.useState<
-    string | null
-  >(null);
-  const [name, setName] = React.useState("");
-  const [nominalPower, setNominalPower] = React.useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingFacilityId, setEditingFacilityId] = useState<string | null>(
+    null
+  );
+  const [name, setName] = useState("");
+  const [nominalPower, setNominalPower] = useState("");
 
   const handleOpenDialog = (facilityId?: string) => {
     if (facilityId) {

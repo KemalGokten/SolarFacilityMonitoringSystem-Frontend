@@ -1,4 +1,3 @@
-import * as React from "react";
 import { LineChart } from "@mui/x-charts";
 
 // Define the FacilityPerformance type
@@ -36,7 +35,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ data }) => {
             label: "Active Power (kWs)",
             data: data.active_power_kWs,
             showMark: false,
-            yAxisId:'leftAxisId',
+            yAxisId: "leftAxisId",
           },
           {
             label: "Energy (kWhs)",
@@ -45,8 +44,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ data }) => {
             yAxisId: "rightAxisId",
           },
         ]}
-        rightAxis="rightAxisId" 
-            
+        rightAxis="rightAxisId"
         height={400}
       />
     </div>

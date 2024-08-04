@@ -1,7 +1,10 @@
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { SubmitHandler, useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+
+import { useSnackbar } from "notistack";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
   Avatar,
   Box,
@@ -13,8 +16,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+
 import { useForgotPasswordMutation } from "../../graphql/generated";
-import { useSnackbar } from "notistack";
 
 // Form schema
 const schema = z.object({

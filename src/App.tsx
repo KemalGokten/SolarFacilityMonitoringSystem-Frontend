@@ -1,17 +1,23 @@
 import React from "react";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+
+import { SnackbarProvider } from "notistack";
+
+import { AuthProviderWrapper } from "./contexts/AuthContext";
+
 import Login from "./pages/authPages/Login";
 import Register from "./pages/authPages/Register";
-import { AuthProviderWrapper } from "./contexts/AuthContext";
-import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
-import RedirectRoute from "./components/RedirectRoute";
 import ForgotPassword from "./pages/authPages/ForgotPassword";
 import ResetPassword from "./pages/authPages/ResetPassword";
-import { SnackbarProvider } from "notistack";
-import Dashboard from "./components/Dashboard"; // Ensure this import is correct
-import Facilities from "./components/FacilityList"; // Create this page/component
+import Dashboard from "./pages/Dashboard";
+
+import ProtectedRoute from "./components/ProtectedRoute";
+import RedirectRoute from "./components/RedirectRoute";
+
+import Facilities from "./components/FacilityList";
 import Monitoring from "./components/Monitoring";
+
+import "./App.css";
 
 function App() {
   return (
